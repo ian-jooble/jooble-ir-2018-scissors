@@ -1,7 +1,8 @@
 """Module documents contains class Document"""
 import json
-    
-class Document():
+
+
+class Document:
     """Class for storing different information about a document."""
     
     def __init__(self, **kwargs):
@@ -10,11 +11,9 @@ class Document():
         """
         self.__dict__.update(kwargs)
 
-        
     def __str__(self):
         return str(self.__dict__)
-    
-    
+
     def to_dict(self):
         """
         Transform instance of class to dictionary.
@@ -22,9 +21,8 @@ class Document():
         dictionary with class attributes and values
         """
         return self.__dict__
-      
-        
-    def toJSON(self):
+
+    def to_json(self):
         """
         Transform instance of class to json format.
         Returns:
