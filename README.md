@@ -1,6 +1,8 @@
 # jooble-ir-2018-scissors
 
-# Main files
-- client.ipynb 	
-- doc_classes.py 	
-- server.ipynb
+### Services adresses
+- server_indexer: port=13500
+- server_text_processing: port=13501
+- server_ranking: port=13502
+- server_snippets: port=13503
+- server_result_page_form: port=13504
