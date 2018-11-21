@@ -1,5 +1,6 @@
 import json
 import re
+import os
 
 from flask import Flask, request
 import nltk
@@ -8,6 +9,39 @@ nltk.download('punkt')
 inverted_index = {}
 forward_index = {}
 documents_id = []
+save_path = os.path.join("..", "data")
+
+
+def save_index(path):
+    file_path = os.path.join(path, "forward_index.json")
+    with open(file_path, 'w', encoding='utf8') as outfile:
+        json.dump(forward_index, outfile, ensure_ascii=False)
+
+    file_path = os.path.join(path, "inverted_index.json")
+    with open(file_path, 'w', encoding='utf8') as outfile:
+        json.dump(inverted_index, outfile, ensure_ascii=False)
+
+    file_path = os.path.join(path, "documents_id.json")
+    with open(file_path, 'w') as outfile:
+        json.dump(documents_id, outfile)
+
+
+def load_index(path):
+    global forward_index
+    global inverted_index
+    global documents_id
+
+    file_path = os.path.join(path, "forward_index.json")
+    with open(file_path, 'r', encoding='utf8') as infile:
+        forward_index = json.load(infile)
+
+    file_path = os.path.join(path, "inverted_index.json")
+    with open(file_path, 'r', encoding='utf8') as infile:
+        inverted_index = json.load(infile)
+
+    file_path = os.path.join(path, "documents_id.json")
+    with open(file_path, 'r', encoding='utf8') as infile:
+        documents_id = json.load(infile)
 
 
 def search_boolean(search_query):
@@ -16,8 +50,6 @@ def search_boolean(search_query):
     words = search_query.split(" ")
 
     for word in words:
-        print(word)
-        print(inverted_index.keys())
         if word in inverted_index.keys():
             docs_id.append(set([doc["id"] for doc in inverted_index[word]]))
 
@@ -28,21 +60,22 @@ def search_boolean(search_query):
 
         documents = []
         terms = []
+        set_of_docs_id = list(set_of_docs_id)
         for id in set_of_docs_id:
-            documents.append(forward_index[id])
+            documents.append(forward_index[str(id)])
         for i, word in enumerate(words):
             terms.append({"term": word,
                           "inverted_index": [doc for doc in inverted_index[word]
-                                             if doc["id"] in set_of_docs_id]})
+                                             if doc['id'] in set_of_docs_id]})
         return {"documents": documents, "terms": terms}
     else:
-        return "Documents isn't found."
+        return "Documents aren't found."
 
 
 def add_forward_index(document):
     """Add the document to forward index"""
     global forward_index
-    forward_index[int(document["id"])] = document
+    forward_index[str(document["id"])] = document
 
 
 def add_inverted_index(document):
@@ -83,17 +116,24 @@ def add_to_index():
         documents_id.append(document["id"])
         add_forward_index(document)
         add_inverted_index(document)
-        return "Document successfully added."
+        return "document is successfully added."
     else:
-        return "Document already exist in index."
+        return "document already exist in index."
 
 
 @app.route("/search", methods=["POST"])
-def search_():
+def search():
     search_query = request.json
     return json.dumps(search_boolean(search_query), ensure_ascii=False)
 
 
+@app.route("/save_index", methods=["POST"])
+def saving():
+    save_index(save_path)
+    return "successfully saved."
+
+
 if __name__ == "__main__":
+    load_index(save_path)
     app.run(port=13500)
     # app.run(host='0.0.0.0', port=13500)
