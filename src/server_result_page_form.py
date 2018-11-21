@@ -12,7 +12,12 @@ def index():
 
 @app.route('/result_page', methods=["POST"])
 def get_result_page():
-    return "html"
+    document = json.loads(request.json, encoding="utf-8")
+    serp = ""
+    for i in range(min(len(document["results"]), 10)):
+        res = '\033[1m' + document["results"][i]["title"] + "\033[0;0m" + "\n" + "document id a.k.a. url: " +  str(document["results"][i]["id"]) + "\n" + document["results"][i]["snippet"]
+        serp = res +"\n" + "."*100 + "\n"
+    return serp
 
 
 if __name__ == "__main__":
