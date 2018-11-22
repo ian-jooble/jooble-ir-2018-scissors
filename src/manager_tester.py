@@ -5,11 +5,14 @@ import os
 import requests
 import pandas as pd
 
-indexer_url = "http://127.0.0.1:13500/"
-text_processing_url = "http://127.0.0.1:13501/"
-ranking_url = "http://127.0.0.1:13502/"
-snippets_url = "http://127.0.0.1:13503/"
-res_page_form_url = "http://127.0.0.1:13504/"
+import config
+
+indexer_url = config.indexer_url
+text_processing_url = config.text_processing_url
+ranking_url = config.ranking_url
+snippets_url = config.snippets_url
+res_page_form_url = config.res_page_form_url
+
 query = "Саженцы культур"
 
 print("Accessing indexer")

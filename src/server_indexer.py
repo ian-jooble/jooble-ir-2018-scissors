@@ -5,11 +5,12 @@ import os
 from flask import Flask, request
 import nltk
 
+import config
+
 nltk.download('punkt')
 inverted_index = {}
 forward_index = {}
 documents_id = []
-save_path = os.path.join("..", "data")
 
 
 def save_index(path):
@@ -129,11 +130,11 @@ def search():
 
 @app.route("/save_index", methods=["POST"])
 def saving():
-    save_index(save_path)
+    save_index(config.data_dir)
     return "successfully saved."
 
 
 if __name__ == "__main__":
-    load_index(save_path)
-    app.run(port=13500)
-    # app.run(host='0.0.0.0', port=13500)
+    load_index(config.data_dir)
+    app.run(port=config.INDEXER_PORT)
+    # app.run(host='0.0.0.0', port=config.INDEXER_PORT)

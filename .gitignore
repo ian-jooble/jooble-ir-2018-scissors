@@ -108,3 +108,9 @@ venv.bak/
 
 # VS code
 .vscode
+
+# temporary files
+documents_id.json
+forward_index.json
+inverted_index.json
+

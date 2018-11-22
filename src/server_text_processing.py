@@ -6,9 +6,10 @@ from nltk.stem.snowball import RussianStemmer
 from nltk.corpus import stopwords
 from nltk import wordpunct_tokenize
 
+import config
+
 nltk.download('punkt')
 nltk.download('stopwords')
-app = Flask(__name__)
 
 
 def _calculate_languages_ratios(text):
@@ -68,6 +69,9 @@ def normalize_text(text):
     return text
 
 
+app = Flask(__name__)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return "Main page of text preprocessor"
@@ -101,5 +105,5 @@ def det_lang():
 
 
 if __name__ == "__main__":
-    app.run(port=13501)
-    # app.run(host='0.0.0.0', port=13501)
+    app.run(port=config.TEXT_PROCESSING_PORT)
+    # app.run(host='0.0.0.0', port=config.TEXT_PROCESSING_PORT)

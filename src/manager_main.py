@@ -1,15 +1,18 @@
 import json
 import gzip
 import os
+import time
 
 import requests
 import pandas as pd
 
-indexer_url = "http://127.0.0.1:13500/"
-text_processing_url = "http://127.0.0.1:13501/"
-ranking_url = "http://127.0.0.1:13502/"
-snippets_url = "http://127.0.0.1:13503/"
-res_page_form_url = "http://127.0.0.1:13504/"
+import config
+
+indexer_url = config.indexer_url
+text_processing_url = config.text_processing_url
+ranking_url = config.ranking_url
+snippets_url = config.snippets_url
+res_page_form_url = config.res_page_form_url
 
 
 def test_system():
@@ -39,14 +42,12 @@ def test_system():
     search_query = r.text
 
     # search in index
-    r = requests.post(indexer_url + "search",
-                      json=search_query)
+    r = requests.post(indexer_url + "search", json=search_query)
     print(r.status_code)
     print(r.text)
 
     # search in index
-    r = requests.post(indexer_url + "search",
-                      json="водител")
+    r = requests.post(indexer_url + "search", json="водител")
     print(r.status_code)
     print(r.text)
     print(json.loads(r.text, encoding="utf-8"))
@@ -95,15 +96,16 @@ def add_dataset_to_index(dataset):
     print("dataset adding finished!")
 
 
-# dataset_path = os.path.join("..", "data", "by_jobs", "by")
-# documents = load_data(dataset_path)
-# print("Number of documents =", len(documents))
-# print("Text of first five documents:")
-# print(documents.head()["text"])
-#
-# add_dataset_to_index(documents.loc[0:1000])
-# r = requests.post(indexer_url + "save_index")
+dataset_path = os.path.join("..", "data", "by_jobs", "by")
+documents = load_data(dataset_path)
+print("Number of documents =", len(documents))
+print("Text of first five documents:")
+print(documents.head()["text"])
 
+start = time.time()
+add_dataset_to_index(documents.loc[:30000])
+print("Adding time =", time.time() - start)
+r = requests.post(indexer_url + "save_index")
 #  search in index
 # r = requests.post(indexer_url + "search", json="вектор")
 # print(r.status_code)
