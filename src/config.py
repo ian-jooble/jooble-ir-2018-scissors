@@ -11,15 +11,16 @@ SNIPPETS_PORT = 13503
 RESULT_PAGE_PORT = 13504
 MANAGER_PORT = 13505
 
-SEARCH_PATH = "/search"
-INDEXER_PATH = "/indexer"
-RANK_PATH = "/ranking"
-NORMALIZE_DOC_PATH = "/normalize_document"
-NORMALIZE_QUERY_PATH = "/normalize_query"
-SNIPPETS_PATH = "/snippets"
-RESULT_PAGE_PATH = "/result_page"
+SEARCH_PATH = "search"
+INDEXER_PATH = "indexer"
+RANK_PATH = "ranking"
+NORMALIZE_DOC_PATH = "normalize_document"
+NORMALIZE_QUERY_PATH = "normalize_query"
+SNIPPETS_PATH = "snippets"
+RESULT_PAGE_PATH = "result_page"
 
-MAIN_URL = "http://127.0.0.1:"
+MAIN_URL = "http://0.0.0.0:"
+LEPUS_URL  = "http://0.0.0.0:13505/"
 
 indexer_url = MAIN_URL + str(INDEXER_PORT) + "/"
 text_processing_url = MAIN_URL + str(TEXT_PROCESSING_PORT) + "/"
