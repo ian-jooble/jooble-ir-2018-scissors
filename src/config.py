@@ -2,7 +2,7 @@ import os
 
 base_dir = os.path.split(os.path.abspath(os.path.dirname(__file__)))[:-1][0]
 data_dir = os.path.join(base_dir, 'data')
-by_dir = os.path.join(data_dir, "by_jobs", "by")
+dataset_dir = os.path.join(data_dir, "by_jobs", "by")
 
 INDEXER_PORT = 13500
 TEXT_PROCESSING_PORT = 13501
@@ -29,7 +29,6 @@ RESULT_PAGE_HOST = MANAGER_HOST
 
 #MAIN_URL = "http://0.0.0.0:"
 MAIN_URL = "http://127.0.0.1:"
-#LEPUS_URL  = "http://0.0.0.0:13505/"
 
 indexer_url = MAIN_URL + str(INDEXER_PORT) + "/"
 text_processing_url = MAIN_URL + str(TEXT_PROCESSING_PORT) + "/"

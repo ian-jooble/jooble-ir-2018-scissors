@@ -1,39 +1,35 @@
 import json
+import re
 
 from flask import Flask, request
+import jsonpickle
 
 import config
+
 
 app = Flask(__name__)
 
 
 @app.route('/snippets', methods=["POST"])
 def get_snippets():
-    document = json.loads(request.json, encoding="utf-8")
-    
-    documents = document["documents"]
-    terms = []
-    for term in document["terms"]:
-        terms.append(term["inverted_index"][0]["pos"][0])
-    
-    result_lists = []
-    for doc in documents:
-        if terms[0] < 10 and terms[1] < 200:
-            snippet = doc["text"][0:min(180, len(doc["text"]) - 1)]
-        
-        elif terms[0] > 10 :
-            snippet = doc["text"][terms[0]:min(terms[0]+180, len(doc["text"]) - 1)]
+    """
+    :param dict params: Like {"documents": [list of Documents],
+                              "terms":  list of dicts [{"term": "word1",
+                                        "inverted_index": [dict1, dict2, ...]}]}
 
-        elif terms[0] > 10 and  terms[1] > 210:
-            snippet = doc["text"][terms[0]:min(terms[0] + 90, len(doc["text"]) - 1)]
-            snippet = snippet + " ... " + doc["text"][terms[1]:min(terms[1] + 90, len(doc["text"]) - 1)]
-            
-        doc["snippet"] = snippet    
-    search_res = dict()
-    search_res["results"] = documents
-    return json.dumps(search_res, ensure_ascii=False)
+    :return list of Documents documents: With updated snippet attributes
+    """
+    params = jsonpickle.decode(request.json)
+    documents = params["documents"]
+    search_terms = params["terms"]
+    query = " ".join([i["term"] for i in search_terms])
+
+    for doc in documents:
+        doc.snippet = doc.text[:100]
+
+    return jsonpickle.encode(documents)
 
 
 if __name__ == "__main__":
-    app.run(port=config.SNIPPETS_PORT)
-    # app.run(host='0.0.0.0', port=config.SNIPPETS_PORT)
+    app.run(host=config.SNIPPETS_HOST, port=config.SNIPPETS_PORT)
+

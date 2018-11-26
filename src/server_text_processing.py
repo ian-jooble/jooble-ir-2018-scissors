@@ -5,8 +5,10 @@ import nltk
 from nltk.stem.snowball import RussianStemmer
 from nltk.corpus import stopwords
 from nltk import wordpunct_tokenize
+import jsonpickle
 
 import config
+from document import Document
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -55,15 +57,18 @@ def detect_language(text):
 
 
 def normalize_text(text):
-    """Preprocess text data"""
+    """Preprocess text data
+
+    :param str text:
+    :return str text:
+    """
     # Stemming
     rus_stemmer = RussianStemmer()
     text = text.lower()
     text = nltk.word_tokenize(text)
     text = [rus_stemmer.stem(word) for word in text]
     # Excluding Stop-words
-    text = [word for word in text if
-            word not in stopwords.words('english') and word.isalpha()]
+    text = [word for word in text if word not in stopwords.words('english') and word.isalpha()]
     text = " ".join(text)
 
     return text
@@ -79,19 +84,27 @@ def index():
 
 @app.route("/normalize_document", methods=["POST"])
 def normalize_document():
-    document = request.json
-    field_for_norm = ["text", "title"]
+    """
+    :param Document document:
+    :return Document document:
+    """
+    document = jsonpickle.decode(request.json)
+    assert isinstance(document, Document)
 
-    for field in field_for_norm:
-        text = document[field]
-        text = normalize_text(text)
-        document[field + "_normalized"] = text
+    text = document.text
+    document.text_normalized = normalize_text(text)
+    text = document.title
+    document.title_normalized = normalize_text(text)
 
-    return json.dumps(document, ensure_ascii=False)
+    return jsonpickle.encode(document)
 
 
 @app.route("/normalize_query", methods=["POST"])
 def normalize_query():
+    """
+    :param str text:
+    :return str text:
+    """
     text = request.json
     text = normalize_text(text)
     return text
@@ -99,11 +112,16 @@ def normalize_query():
 
 @app.route("/detect_language", methods=["POST"])
 def det_lang():
-    text = request.json
-    language = detect_language(text)
-    return language
+    """
+    :param Document document:
+    :return Document document: With updated language attribute
+    """
+    document = jsonpickle.decode(request.json)
+    language = detect_language(document.text)
+    document.language = language
+    return jsonpickle.encode(document)
 
 
 if __name__ == "__main__":
-    app.run(port=config.TEXT_PROCESSING_PORT)
-    # app.run(host='0.0.0.0', port=config.TEXT_PROCESSING_PORT)
+    app.run(host=config.TEXT_PROCESSING_HOST,
+            port=config.TEXT_PROCESSING_PORT)
