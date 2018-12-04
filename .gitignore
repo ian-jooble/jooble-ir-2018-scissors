@@ -109,9 +109,7 @@ venv.bak/
 # VS code
 .vscode
 
-# temporary files
-documents_id.json
-forward_index.json
-inverted_index.json
-vectorizer_tfidf.dat
+# files that are created by scripts
+index/
+headHunter_data/
 

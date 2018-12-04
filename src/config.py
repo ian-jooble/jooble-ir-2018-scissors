@@ -2,7 +2,9 @@ import os
 
 base_dir = os.path.split(os.path.abspath(os.path.dirname(__file__)))[:-1][0]
 data_dir = os.path.join(base_dir, 'data')
-dataset_dir = os.path.join(data_dir, "by_jobs", "by")
+dataset_dir = os.path.join(data_dir, "by_jobs")
+index_dir = os.path.join(data_dir, "index")
+hh_dir = os.path.join(data_dir, "headHunter_data")
 
 INDEXER_PORT = 13500
 TEXT_PROCESSING_PORT = 13501
