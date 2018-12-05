@@ -112,4 +112,5 @@ venv.bak/
 # files that are created by scripts
 index/
 headHunter_data/
-
+by_jobs_full.csv
+by_jobs.csv
