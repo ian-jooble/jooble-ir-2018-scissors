@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vloodle</title>
+        <link rel = "stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    </head>
+    <body>
+
+
+    <div class = "wrapper wrapper__helper">
+        <div class = "sidebar sidebar__left">
+
+        <form action="" method="post">
+            {{ form.csrf }}
+     
+            <div class="input text">
+                {{ "Vloodle" }} {{ form.query }}
+            <button class = "button">Search</button>
+            </div>
+
+                </div>
+
+
+        <div class = "sidebar sidebar__right">
+        <form action="" method="post">
+                {{ form.csrf }}
+         
+                {{ form.skills }}
+        </div>
+            <div class = "main">
+                <ul class = "vacancies_ul">
+
+                    <li class = "vacancies_li">
+                        <h3 class = "vacancies_h3">{{ documents[0].title }}</h3>
+                        <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                        <textarea class = "vacancies_textarea">{{ documents[0].snippet }} </textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{  documents[1].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea"> {{ documents[1].snippet }} </textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{  documents[2].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea"> {{ documents[2].snippet }} </textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{  documents[3].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{  documents[3].snippet }}</textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[4].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[4].snippet }}</textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[5].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[5].snippet }}</textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[6].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[6].snippet }}</textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[7].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[7].snippet }}</textarea>
+                    </li>
+
+                    <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[8].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[8].snippet }}</textarea>
+                    </li>
+
+                     <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[9].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[9].snippet }}</textarea>
+                    </li>
+
+                        <li class = "vacancies_li">
+                            <h3 class = "vacancies_h3">{{ documents[10].title }}</h3>
+                            <a href = "kek"class = "vacancies_a">url://kekekekkekekekekek.com</a>
+                            <textarea class = "vacancies_textarea">{{ documents[10].snippet }}</textarea>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--script src = "./vacancy.js"></script-->
+    </body>
+</html>
