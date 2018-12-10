@@ -38,25 +38,9 @@ class Document:
                      "Text: " + self.text + "\n" + \
                      "Snippet: " + str(self.snippet) + "\n"
         return short_repr
-    
-    
-class TokenDocumentInfo:
-    
-    """Class for storing information about token in a particular document."""
-    
-    def __init__(self, doc_id, pos, pos_raw):
-        """     
-        :param str doc_id: Id of particular document.
-        :param list of int pos: Positions of token in normilized text.
-        :param list of int pos_raw: Positions of token in raw text.
-        """
-        self.id = doc_id
-        self.pos = pos
-        self.pos_raw = pos_raw
-    
-    def __str__(self):
-        return str(self.__dict__)
-    
-    def __repr__(self):
-        return str(self.__dict__)
- 
+		
+		
+class ExtendedDocument:
+
+	def __init__(self, doc_id):
+		self.id = doc_id
