@@ -6,6 +6,7 @@ data_dir = os.path.join(base_dir, 'data')
 dataset_dir = os.path.join(data_dir, "by_jobs")
 index_dir = os.path.join(data_dir, "index")
 hh_dir = os.path.join(data_dir, "headHunter_data")
+by_jobs_csv_dir = os.path.join(data_dir, "ind)
 
 INDEXER_PORT = 13500
 TEXT_PROCESSING_PORT = 13501
