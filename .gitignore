@@ -119,3 +119,4 @@ by_jobs_full.csv
 by_jobs.csv
 udpipe_syntagrus.model
 by_jobs_10K_to_60000.csv
+saved_models/
