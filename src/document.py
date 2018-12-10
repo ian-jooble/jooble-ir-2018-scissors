@@ -6,24 +6,25 @@ import re
 class Document:
     """Class for storing different information about a document."""
     
-    def __init__(self, doc_id, title, text, language=None):
+    def __init__(self, doc_id, title, text, language=None, title_normalized=None,
+                 text_normalized=None, url=None):
         """
         Create document.
-        
+
         :param str doc_id:
         :param str title:
         :param str text:
-        :param str language: Default None.  
+        :param str language: Default None.
         """
         self.id = doc_id
         self.title = title
         self.text = text
         self.language = language
-        self.title_normalized = None
-        self.text_normalized = None
+        self.title_normalized = title_normalized
+        self.text_normalized = text_normalized
         self.snippet = None
-        self.url = None
-        
+        self.url = url
+
     def __str__(self):
         return str(self.__dict__)
 
@@ -49,6 +50,7 @@ class ExtendedDocument:
     """
     def __init__(self, doc_id):
         self.id = doc_id
+        self.text = ""
         self.text_lemmas = ""
         self.text_lemmas_tags = ""
         self.requirement = ""
@@ -60,6 +62,8 @@ class ExtendedDocument:
         self.prof_area_normalized = ""
         self.prof_area_lemmas = ""
         self.prof_area_lemmas_tags = ""
+        self.snippet = ""
+        self.url = ""
 
     def __str__(self):
         return str(self.__dict__)
