@@ -2,12 +2,12 @@
 
 import re
 
-
 class Document:
     """Class for storing different information about a document."""
     
-    def __init__(self, doc_id, title, text, language=None, title_normalized=None,
-                 text_normalized=None, url=None):
+    def __init__(self, doc_id, title, text, language, title_normalized,
+                text_normalized, url, requirement_normalized="", prof_area="",
+                prof_area_normalized=""):
         """
         Create document.
 
@@ -22,57 +22,19 @@ class Document:
         self.language = language
         self.title_normalized = title_normalized
         self.text_normalized = text_normalized
-        self.snippet = None
         self.url = url
+        self.requirement_normalized = requirement_normalized
+        self.prof_area_normalized = prof_area_normalized 
+        self.prof_area = prof_area
+        self.snippet = ""
 
     def __str__(self):
         return str(self.__dict__)
-
-    def to_dict(self):
-        """
-        Transform instance of class to dictionary.
-        
-        :return dict: Dictionary with class attributes and values.
-        """
-        return self.__dict__
     
     def __repr__(self):
         short_repr = "Title: " + self.title + "\n" + \
                      "Text: " + self.text + "\n" + \
                      "Snippet: " + str(self.snippet) + "\n"
-        return short_repr
-
-
-class ExtendedDocument:
-    """
-    Class for storing additional information about a document
-    which is used for smart ranking and snippets creation.
-    """
-    def __init__(self, doc_id):
-        self.id = doc_id
-        self.text = ""
-        self.text_lemmas = ""
-        self.text_lemmas_tags = ""
-        self.requirement = ""
-        self.requirement_normalized = ""
-        self.requirement_lemmas = ""
-        self.requirement_lemmas_tags = ""
-        self.prof_area = ""
-        self.prof_area_id = ""
-        self.prof_area_normalized = ""
-        self.prof_area_lemmas = ""
-        self.prof_area_lemmas_tags = ""
-        self.snippet = ""
-        self.url = ""
-
-    def __str__(self):
-        return str(self.__dict__)
-
-    def __repr__(self):
-        short_repr = "id: " + self.id + "\n" + \
-                     "Text_lemmas: " + self.text_lemmas + "\n" + \
-                     "Requirement lemmas: " + str(self.requirement_lemmas) + "\n" + \
-                     "Professional area: " + str(self.prof_area) + "\n"
         return short_repr
 
 
