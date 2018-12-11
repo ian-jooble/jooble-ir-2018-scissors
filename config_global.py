@@ -7,6 +7,12 @@ jooble_data_dir = os.path.join(data_dir, "by_jobs")
 index_dir = os.path.join(data_dir, "index")
 headhunter_dir = os.path.join(data_dir, "HeadHunter_data")
 
+class_data_dir = os.path.join(src_dir, "model",
+                              "classifier_train_data",
+                              "hh_dataset_all_uniq_text.csv")
+class_vect_dir = os.path.join(src_dir, "model",
+                              "classifier_train_data",
+                              "vectorizer_tfidf.dat")
 
 INDEXER_PORT = 13500
 TEXT_PROCESSING_PORT = 13501

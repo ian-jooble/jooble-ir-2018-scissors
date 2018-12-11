@@ -4,9 +4,6 @@
 Loads all necessary data to project from google drive:
 - initial datasets and index
 - tf-idf vectorizer
-- word2vec embedding files
-- segmenter model and weights
-- classifier model
 
 ### Run search system
 - run all "server" scripts
