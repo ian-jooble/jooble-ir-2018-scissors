@@ -117,3 +117,11 @@ nn_weights/
 word_embedding/
 by_jobs_full.csv
 by_jobs.csv
+udpipe_syntagrus.model
+by_jobs_10K_to_60000.csv
+saved_models/
+temp/
+dataset_jooble_labeled.csv
+labeled_jooble_60K.csv
+classifier_train_data/
+classifiers.dat

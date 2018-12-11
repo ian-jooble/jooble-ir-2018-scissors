@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Vloodle</title>
         <link rel = "stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     </head>
     <body>
         <div class = "wrapper">
@@ -27,7 +28,7 @@
 			    {{ form.csrf }}
 		 
 			    <div class="input text">
-				{{ form.skills.label }} {{ form.skills }}
+				{{ form.skills }}
 			    </div>
 
                 </div>
