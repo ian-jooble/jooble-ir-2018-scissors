@@ -1,9 +1,9 @@
-# jooble-ir-2018-scissors
+# jooble_search_engige
 
 ### setup.py scripts
 Loads all necessary data to project from google drive:
 - initial datasets and index
-- tf-idf vectorizer
+- doc_to_vec vectorizer
 
 ### Run search system
 - run all "server" scripts
